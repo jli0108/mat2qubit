@@ -78,11 +78,11 @@ class qSymbOp(object):
             pass
 
     def parseFullOpStr(s, inpText, mult):
-        """Parse operator string, such as '[X_1 Z_v2] ++ 2*k [Y_1 Z_v3]'"""
+        """Parse operator string, such as '[X_1 Z_v2] + 2*k [Y_1 Z_v3]'"""
 
         # If no brackets in string, it should just be ''
 
-        strOpTerms = [elem.strip() for elem in inpText.split("++")]
+        strOpTerms = [elem.strip() for elem in inpText.split("+")]
 
         for strOpTerm in strOpTerms:
 
@@ -137,10 +137,10 @@ class qSymbOp(object):
         for locop in locop_arr:
 
             # Operator and subsystem
-            op_ss = locop.split("_")
-            assert len(op_ss) == 2
+            op_ss = locop
+            # assert len(op_ss) == 2
             op = op_ss[0]
-            ssid = op_ss[1]
+            ssid = op_ss[1:]
 
             # No effect if ssid already there
             s.ssid_set.add(ssid)
